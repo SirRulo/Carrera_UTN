@@ -1,0 +1,48 @@
+{
+    "scores": [
+        {
+            "nombre": "MATIAS",
+            "puntaje": 20
+        },
+        {
+            "nombre": "ANA",
+            "puntaje": 70
+        },
+        {
+            "nombre": "SOFIA",
+            "puntaje": 50
+        },
+        {
+            "nombre": "ANDRES",
+            "puntaje": 0
+        },
+        {
+            "nombre": "SOL",
+            "puntaje": 40
+        },
+        {
+            "nombre": "MARIELA",
+            "puntaje": 10
+        },
+        {
+            "nombre": "JOSE",
+            "puntaje": 60
+        },
+        {
+            "nombre": "CARLOS",
+            "puntaje": 0
+        },
+        {
+            "nombre": "PEDRO",
+            "puntaje": 50
+        },
+        {
+            "nombre": "JUAN",
+            "puntaje": 80
+        },
+        {
+            "nombre": "FRANCO",
+            "puntaje": 40
+        }
+    ]
+}
