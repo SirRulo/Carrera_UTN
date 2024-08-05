@@ -2,18 +2,6 @@ from visual import *
 from datos import lista
 import sys
 
-def corroborar_correcta(dic:dict, respuesta:str, correcta:str="correcta"):
-    # brief: corrobora si la respuesta a la hora de clickear en un de los botones es la correcta.
-    # parametros:
-    #     dic: diccionario con elementos.
-    #     respuesta: string que define un elemento del diccionario (respuesta que seleccionaste).
-    #     correcta: string que define un elemento del diccionario (respuesta correcta).
-    # return: True en caso de correcta, False caso contrario.
-    if respuesta == dic[correcta]:
-        return True
-    else:
-        return False
-
 # Flags
 run = True
 play_game = False
@@ -33,6 +21,8 @@ tiempo_transcurrido = 5
 
 while run:
     lista_eventos = pygame.event.get()
+
+    # Avanzar y Retroceder pj
     if correcta:
         puntos += 10
         pj_x += 90
@@ -41,17 +31,23 @@ while run:
         pj_x -= 45
         rect_pj.x -= 45
     
+    # Reiniciar tiempo por respuesta y acumular contador
     if correcta or correcta == False:
         tiempo_transcurrido = 5
         contador += 1
         correcta = None
 
+    # Preguntas
     if contador == 16:
         finish_game = True
         correcta = None
+    elif tiempo_transcurrido == 0:
+        contador += 1
+        tiempo_transcurrido = 5
     else:
         pregunta = lista[contador]
 
+    # Colisiones
     if rect_pj.colliderect(rect_avanzar):
         pj_x += 45
         rect_pj.x += 45
@@ -61,10 +57,12 @@ while run:
     elif rect_pj.colliderect(rect_utn):
         finish_game = True
 
+    # Evita retroceder pj
     if pj_x < x_inicio and rect_pj.x < x_inicio:
         pj_x = x_inicio
         rect_pj.x = x_inicio
 
+    # Agregar jugador al archivo 
     if len(usuario) == 6:
         data = leer_json("Carrera UTN\\score.json")
         nom = "".join(usuario)
@@ -75,6 +73,7 @@ while run:
         usuario = []
         score_view = True
 
+    # Ventanas
     if play_game == False and finish_game == False:
         menu_principal()
     elif play_game and finish_game == False:
@@ -85,6 +84,7 @@ while run:
         else:
             puntaje_1(usuario)
 
+    # Eventos
     try:
         for evento in lista_eventos:
             if evento.type == pygame.QUIT:
@@ -122,6 +122,7 @@ while run:
     except Exception as error:
         print(f"ERROR! -> {error}")
 
+    # Reinicio de Flags
     if finish_game:
         contador = 0
         pregunta = lista[contador]

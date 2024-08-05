@@ -42,6 +42,18 @@ def pulsar_boton(event, x,y, ancho,alto):
     if x < event.pos[0] < x + ancho and y < event.pos[1] < y + alto:
         return True
 
+def corroborar_correcta(dic:dict, respuesta:str, correcta:str="correcta"):
+    # brief: corrobora si la respuesta a la hora de clickear en un de los botones es la correcta.
+    # parametros:
+    #     dic: diccionario con elementos.
+    #     respuesta: string que define un elemento del diccionario (respuesta que seleccionaste).
+    #     correcta: string que define un elemento del diccionario (respuesta correcta).
+    # return: True en caso de correcta, False caso contrario.
+    if respuesta == dic[correcta]:
+        return True
+    else:
+        return False
+
 # Crear Botones
 comenzar = convertir_boton("Carrera UTN\\Imagenes\\comenzar.png", ancho_boton,alto_boton)
 terminar = convertir_boton("Carrera UTN\\Imagenes\\terminar.png", ancho_boton,alto_boton)
